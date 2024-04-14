@@ -27,12 +27,16 @@ function App() {
     }
   };
 
-      useEffect( async ()=>{
-        const response = await fetch(url,options);
-        const result = await response.json();
+      useEffect(   ()=>{
+        async function apiCall() {
 
-        setData(result)
-        console.log(result)
+          const response = await fetch(url,options);
+          const result = await response.json();
+          
+          setData(result)
+          console.log(result)
+        }
+        apiCall()
 },[])
 
   return (
