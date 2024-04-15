@@ -1,11 +1,10 @@
 export  interface weatherTypes {
-    weatherData:object
-    
+    weatherData:object 
     location:{
         name:string;
         country:string;
      }
-     current:{
+    current:{
         condition:{
             text:string;
             icon:string
@@ -13,6 +12,6 @@ export  interface weatherTypes {
         temp_c:number;
         feelslike_c:number;
         humidity:number
-     }
-    
     }
+
+}

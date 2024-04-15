@@ -1,6 +1,7 @@
 
 import { ChangeEvent, useEffect,useState } from 'react';
 import {weatherTypes} from "./types"
+import Card from './Card';
 import './App.css'
 
 function App() {
@@ -35,7 +36,7 @@ function App() {
    if(search !== null && search.length > 3){
     setWeatherData(result)
    }
-   
+
   
   
     console.log(result);
@@ -52,7 +53,12 @@ const searchHandler = (e:ChangeEvent<HTMLSelectElement>)=>{
 }
 
 const onSubmit =()=>{
+
+  
   fetchData()
+
+
+
   setSearch(secondSearch)
   console.log(weatherData)
   
@@ -64,36 +70,21 @@ const onSubmit =()=>{
     return <h1>Loading ... </h1>
   }
   
-//   if(search !== weatherData.location.name)return(
-//     <>
-//     <div><h1>Daniel Weather app</h1>
-// <h3>Enter a valid name</h3>
 
-// <input type="text" onChange={searchHandler} />
-// <button onClick={()=>{onSubmit}}>Search</button>
-
-
-
-//     </div>
-//     </>
-//   )
 
   return (
     <>
-  <h1>Daniel Weather app</h1>
 
-  <input type="text" onChange={(event:ChangeEvent<HTMLSelectElement>)=>{searchHandler(event)}} />
-  <button onClick={()=>{onSubmit();}}>Search</button>
-  <div>
+    <div className='w-screen h-screen flex flex-col items-center py-10'>
 
-  <h2>{weatherData.location.name}</h2>
-  <h2>{weatherData.location.country}</h2>
-  <img src={weatherData.current.condition.icon} alt="" />
-  <h2>Temperature: {weatherData.current.temp_c}</h2>
-  <h2>Feels like: {weatherData.current.feelslike_c}</h2>
-  <h2>Sky: {weatherData.current.condition.text}</h2>
-  <h2>Humidity: {weatherData.current.humidity}</h2>
-  </div>
+  <h1 className='text-5xl font-semibold text-gray-50  m-4'>Daniel Weather app</h1>
+<div className='flex flex-col  justify-center items-center'>
+
+  <input className='m-4 w-72 text-3xl border-2 bg-transparent text-gray-50 outline-none' type="text" onChange={(event:ChangeEvent<HTMLSelectElement>)=>{searchHandler(event)}} />
+  <button className='border-2 m-4 text-2xl text-gray-50 cursor-pointer rounded-lg px-3' onClick={()=>{onSubmit();}}>Search</button>
+</div>
+<Card weatherData={weatherData}/>
+    </div>
     </>
   )
 }
